@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationStart, Router} from '@angular/router';
-import {filter} from 'rxjs/operators';
-import {MatDialog} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {UserRegister} from "./models/user-register";
+import {AuthenticationService} from "./service/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -9,16 +9,17 @@ import {MatDialog} from '@angular/material/dialog';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router, private dialog: MatDialog) {
+  currentUser: UserRegister;
+
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
-  ngOnInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationStart))
-      .subscribe(() => {
-        if (this.dialog.openDialogs.length) {
-          this.dialog.closeAll();
-        }
-      });
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 }
