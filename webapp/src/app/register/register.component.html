@@ -2,10 +2,10 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="phnNum">Phone number</label>
-    <input type="number" id="phnNum" formControlName="phnNum" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phnNum.errors }" />
+    <input type="text" id="phnNum" formControlName="phnNum" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phnNum.errors }" />
     <div *ngIf="submitted && f.phnNum.errors" class="invalid-feedback">
       <div *ngIf="f.phnNum.errors.required">Phone number is required</div>
-      <div *ngIf="f.phnNum.errors.length">Phone number must have 10 digits</div>
+      <!--<div *ngIf="f.phnNum.errors.length">Phone number must have 10 digits</div>-->
     </div>
   </div>
   <div class="form-group">
@@ -17,10 +17,10 @@
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" id="password" formControlName="passwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-      <div *ngIf="f.password.errors.required">Password is required</div>
-      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+    <input type="password" id="password" formControlName="passwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.passwd.errors }" />
+    <div *ngIf="submitted && f.passwd.errors" class="invalid-feedback">
+      <div *ngIf="f.passwd.errors.required">Password is required</div>
+      <div *ngIf="f.passwd.errors.minlength">Password must be at least 4 characters</div>
     </div>
   </div>
   <div class="form-group">

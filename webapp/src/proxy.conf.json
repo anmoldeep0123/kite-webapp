@@ -1,0 +1,7 @@
+{
+  "/ka/*": {
+    "target": "http://35.187.245.85:8080",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}
