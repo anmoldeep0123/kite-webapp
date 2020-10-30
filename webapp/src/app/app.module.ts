@@ -11,6 +11,8 @@ import {AlertComponent} from './common/alert/alert.component';
 import {ErrorInterceptor} from './helpers/error.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { BrokerRegisterComponent } from './broker-register/broker-register.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     AlertComponent,
+    UserProfileComponent,
+    BrokerRegisterComponent,
   ],
   imports: [
     BrowserModule,

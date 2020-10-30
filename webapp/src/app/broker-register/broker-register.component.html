@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-body">
+    <div class="tab-pane active" [formGroup]="brokerForm" id="profile">
+      <h3 class="text-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="feather feather-credit-card mr-2">
+          <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+          <line x1="1" y1="10" x2="23" y2="10"></line>
+        </svg>
+        Register Broker
+      </h3>
+      <hr>
+      <div class="form-group">
+        <!--        <div class="small text-muted">You have not added any broker yet.</div>-->
+        <div class="dropdown">
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+            Select Broker
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item">Zerodha</a>
+            <a class="dropdown-item">AliceBlue</a>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;align-items: baseline">
+      <button type="button" class="form-group btn btn-primary align-elements" (click)="generateBrokerRegURL()">Generate URLs</button>
+        <i class="fas fa-info" style="color: darkcyan" data-toggle="popover"
+           title="Want to know how to register us with your broker. Click here"></i>
+      </div>
+      <div class="form-group" *ngIf="showUrls">
+        <div class="text-muted">
+          <label>Redirect URL &nbsp; :</label>
+          <span>&nbsp; http://xyz.kite_jh5767&ds.in</span>
+        </div>
+        <div class="text-muted">
+          <label>Postback URL &nbsp; :</label>
+          <span>&nbsp; http://xyz.kite_jh5ds343we767&ds.in</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="clientId" class="text-dark">Client Id</label>
+        <input type="text" class="form-control" formControlName="clientId" id="clientId" aria-describedby="fullNameHelp"
+               placeholder="Enter client id">
+      </div>
+      <div class="form-group">
+        <label for="apiKey" class="text-dark">Api Key</label>
+        <input class="form-control" formControlName="apiKey" id="apiKey">
+      </div>
+      <div class="form-group">
+        <label for="apiSecret" class="text-dark">Api Secret</label>
+        <input class="form-control" formControlName="apiSecret" id="apiSecret">
+      </div>
+      <button type="button" class="btn btn-primary align-elements" (click)="updateBroker()">Update Broker</button>
+      <button type="reset" class="btn btn-light" (click)="skip()">Skip</button>
+    </div>
+  </div>
+</div>
