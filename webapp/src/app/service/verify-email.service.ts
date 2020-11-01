@@ -2,12 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserRegister} from '../models/user-register';
-import {UserProfile} from '../models/user-profile';
-import {BrokerRegisteration} from '../models/broker-registeration';
 
 
 @Injectable({providedIn: 'root'})
-export class ProfileRegisterService {
+export class VerifyEmailService {
   private currentUserSubject: BehaviorSubject<UserRegister>;
   public currentUser: Observable<UserRegister>;
 
@@ -20,11 +18,11 @@ export class ProfileRegisterService {
     return this.currentUserSubject.value;
   }
 
-  profile(profile: UserProfile) {
-    return this.http.post<any>(`https://35.187.245.85:8080/tb/ui/v1/users/profile`, {profile});
+  sendOtp(userDetails) {
+    return this.http.post<any>(`https://35.187.245.85:8080/tb/ui/v1/users/emailotp`, {userDetails});
   }
 
-  registerBroker(broker: BrokerRegisteration) {
-    return this.http.post<any>(`https://35.187.245.85:8080/tb/ui/v1/users/broker`, {broker});
+  checkOtp(optDetails) {
+    return this.http.post<any>(`https://35.187.245.85:8080/tb/ui/v1/users/otp`, {optDetails});
   }
 }

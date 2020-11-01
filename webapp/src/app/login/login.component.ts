@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/verifyEmail']);
         },
         error => {
           this.alertService.error(error);

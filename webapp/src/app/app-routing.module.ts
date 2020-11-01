@@ -6,6 +6,7 @@ import {RegisterComponent} from './register/register.component';
 import {AuthGuard} from './helpers/auth.guard';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {BrokerRegisterComponent} from './broker-register/broker-register.component';
+import {VerifyEmailComponent} from './verify-email/verify-email.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: UserProfileComponent},
   {path: 'registerbroker', component: BrokerRegisterComponent},
+  {path: 'verifyEmail', component: VerifyEmailComponent},
 
   // otherwise redirect to home
   {path: '**', redirectTo: ''}

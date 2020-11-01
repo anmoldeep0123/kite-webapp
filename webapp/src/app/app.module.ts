@@ -10,9 +10,10 @@ import {RegisterComponent} from './register/register.component';
 import {AlertComponent} from './common/alert/alert.component';
 import {ErrorInterceptor} from './helpers/error.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrokerRegisterComponent } from './broker-register/broker-register.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +24,16 @@ import { BrokerRegisterComponent } from './broker-register/broker-register.compo
     AlertComponent,
     UserProfileComponent,
     BrokerRegisterComponent,
+    VerifyEmailComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FormsModule,
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
