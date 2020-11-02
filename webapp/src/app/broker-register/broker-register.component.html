@@ -45,11 +45,11 @@
       </div>
       <div class="form-group">
         <label for="apiKey" class="text-dark">Api Key</label>
-        <input class="form-control" formControlName="apiKey" id="apiKey">
+        <input class="form-control" type="password" formControlName="apiKey" id="apiKey">
       </div>
       <div class="form-group">
         <label for="apiSecret" class="text-dark">Api Secret</label>
-        <input class="form-control" formControlName="apiSecret" id="apiSecret">
+        <input class="form-control" type="password" formControlName="apiSecret" id="apiSecret">
       </div>
       <button type="button" class="btn btn-primary align-elements" (click)="updateBroker()">Update Broker</button>
       <button type="reset" class="btn btn-light" (click)="skip()">Skip</button>

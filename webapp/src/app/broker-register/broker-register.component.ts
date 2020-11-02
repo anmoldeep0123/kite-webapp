@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup} from "@angular/forms";
-import {first} from "rxjs/operators";
-import {ProfileRegisterService} from "../service/profile-register.service";
-import {AlertService} from "../service/alert.service";
+import {FormControl, FormGroup} from '@angular/forms';
+import {first} from 'rxjs/operators';
+import {ProfileRegisterService} from '../service/profile-register.service';
+import {AlertService} from '../service/alert.service';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-broker-register',
@@ -11,7 +12,7 @@ import {AlertService} from "../service/alert.service";
   styleUrls: ['./broker-register.component.scss']
 })
 export class BrokerRegisterComponent implements OnInit {
-  showUrls: boolean = false;
+  showUrls = false;
   brokerForm: FormGroup;
   loading = false;
   submitted = false;
@@ -37,6 +38,9 @@ export class BrokerRegisterComponent implements OnInit {
 
   updateBroker() {
     this.submitted = true;
+    const salt = bcrypt.genSaltSync(10);
+    this.brokerForm.get('apiSecret').setValue(bcrypt.hashSync(this.brokerForm.value.apiSecret, salt));
+    this.brokerForm.get('apiKey').setValue(bcrypt.hashSync(this.brokerForm.value.apiKey, salt));
 
     // stop here if form is invalid
     if (this.brokerForm.invalid) {
