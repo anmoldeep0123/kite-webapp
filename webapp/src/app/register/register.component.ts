@@ -51,9 +51,9 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
     this.userService.register(this.registerForm.value)
       .subscribe((data: any) => {
-          localStorage.setItem('cusId', JSON.stringify(data.response.cusId));
-          localStorage.setItem('sts', JSON.stringify(data.response.sts));
-          localStorage.setItem('email', JSON.stringify(data.response.email));
+          localStorage.setItem('cusId', data.response.cusId);
+          localStorage.setItem('sts', data.response.sts);
+          localStorage.setItem('email', data.response.email);
           this.alertService.success('User Registration successful', true);
           this.router.navigate(['/verifyEmail']);
         },
