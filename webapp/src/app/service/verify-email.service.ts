@@ -19,10 +19,10 @@ export class VerifyEmailService {
   }
 
   sendOtp(userDetails) {
-    return this.http.post<any>(`https://35.187.245.85:8080/tb/ui/v1/users/emailotp`, {userDetails});
+    return this.http.post<any>(`https://35.187.245.85:8080/tb/ui/v1/users/emailotp`, userDetails);
   }
 
-  checkOtp(optDetails) {
-    return this.http.post<any>(`https://35.187.245.85:8080/tb/ui/v1/users/otp`, {optDetails});
+  checkOtp(otpDetails) {
+    return this.http.post<any>(`https://35.187.245.85:8080/tb/ui/v1/users/otp`, otpDetails);
   }
 }
