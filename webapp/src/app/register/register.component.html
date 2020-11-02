@@ -8,7 +8,7 @@
                [ngClass]="{ 'is-invalid': submitted && f.phnNum.errors }"/>
         <div *ngIf="submitted && f.phnNum.errors" class="invalid-feedback">
           <div *ngIf="f.phnNum.errors.required">Phone number is required</div>
-          <!--<div *ngIf="f.phnNum.errors.length">Phone number must have 10 digits</div>-->
+          <div *ngIf="f.phnNum.errors.pattern">Phone number must have 10 digits</div>
         </div>
       </div>
       <div class="form-group">
@@ -17,6 +17,7 @@
                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.pattern">Email id is invalid</div>
         </div>
       </div>
       <div class="form-group">
@@ -26,6 +27,14 @@
         <div *ngIf="submitted && f.passwd.errors" class="invalid-feedback">
           <div *ngIf="f.passwd.errors.required">Password is required</div>
           <div *ngIf="f.passwd.errors.minlength">Password must be at least 4 characters</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cnfmPassword" class="text-dark">Confirm password</label>
+        <input type="password" id="cnfmPassword" formControlName="cnfmPasswd" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && registerForm.errors.confirmPassword }"/>
+        <div *ngIf="submitted && registerForm.errors.confirmPassword" class="invalid-feedback">
+          <div *ngIf="registerForm.errors.confirmPassword">Password and Confirm password didn't match</div>
         </div>
       </div>
       <div class="form-group">

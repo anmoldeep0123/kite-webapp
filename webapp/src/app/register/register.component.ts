@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../service/authentication.service';
 import {AlertService} from '../service/alert.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../service/user.service';
 import {Router} from '@angular/router';
-import {first} from 'rxjs/operators';
+import {confirmPassword} from '../helpers/validators';
 
 @Component({
   selector: 'app-register',
@@ -31,14 +31,17 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = new FormGroup({
       ref: new FormControl('', Validators.required),
-      phnNum: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      passwd: new FormControl('', [Validators.required, Validators.minLength(4)])
-    });
+      phnNum: new FormControl('', [Validators.required, Validators.pattern('^\\d{10}$')]),
+      email: new FormControl('', [Validators.required, Validators.pattern('^([\\w+-.%]+@[\\w-.]+\\.[A-Za-z]{1,})$')]),
+      passwd: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      cnfmPasswd: new FormControl('')
+    }, confirmPassword('passwd', 'cnfmPasswd'));
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
+  get f() {
+    return this.registerForm.controls;
+  }
 
   onSubmit() {
     this.submitted = true;
