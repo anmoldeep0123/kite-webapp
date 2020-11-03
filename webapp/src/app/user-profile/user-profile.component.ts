@@ -22,10 +22,9 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
-      fullName: new FormControl(''),
-      gender: new FormControl(''),
-      nickName: new FormControl(''),
-      address: new FormControl(''),
+      fn: new FormControl(''),
+      gdr: new FormControl(''),
+      nik: new FormControl(''),
       dob: new FormControl('')
     });
   }
@@ -44,6 +43,7 @@ export class UserProfileComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Profile registration successful', true);
+          this.loading = false;
           this.router.navigate(['/registerbroker']);
         },
         error => {

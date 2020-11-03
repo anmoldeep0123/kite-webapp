@@ -1,6 +1,5 @@
 export class BrokerRegisteration {
-  brokerName: string;
-  clientId: string;
-  apiKey: string;
-  apiSecret: string;
+  cId: string;
+  aK: string;
+  aS: string;
 }

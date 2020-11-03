@@ -5,8 +5,8 @@
       <div class="form-group">
         <label for="phnNum" class="text-dark">Phone number</label>
         <input type="text" id="phnNum" formControlName="phnNum" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.phnNum.errors }"/>
-        <div *ngIf="submitted && f.phnNum.errors" class="invalid-feedback">
+               [ngClass]="{ 'is-invalid': f.phnNum.touched && f.phnNum.errors }"/>
+        <div *ngIf="f.phnNum.touched && f.phnNum.errors" class="invalid-feedback">
           <div *ngIf="f.phnNum.errors.required">Phone number is required</div>
           <div *ngIf="f.phnNum.errors.pattern">Phone number must have 10 digits</div>
         </div>
@@ -14,8 +14,8 @@
       <div class="form-group">
         <label for="email" class="text-dark">Email</label>
         <input type="text" id="email" formControlName="email" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
-        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+               [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }"/>
+        <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required">Email is required</div>
           <div *ngIf="f.email.errors.pattern">Email id is invalid</div>
         </div>
@@ -23,8 +23,8 @@
       <div class="form-group">
         <label for="password" class="text-dark">Password</label>
         <input type="password" id="password" formControlName="passwd" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.passwd.errors }"/>
-        <div *ngIf="submitted && f.passwd.errors" class="invalid-feedback">
+               [ngClass]="{ 'is-invalid': f.passwd.touched && f.passwd.errors }"/>
+        <div *ngIf="f.passwd.touched && f.passwd.errors" class="invalid-feedback">
           <div *ngIf="f.passwd.errors.required">Password is required</div>
           <div *ngIf="f.passwd.errors.minlength">Password must be at least 4 characters</div>
         </div>
@@ -32,16 +32,16 @@
       <div class="form-group">
         <label for="cnfmPassword" class="text-dark">Confirm password</label>
         <input type="password" id="cnfmPassword" formControlName="cnfmPasswd" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && registerForm.errors.confirmPassword }"/>
-        <div *ngIf="submitted && registerForm.errors.confirmPassword" class="invalid-feedback">
+               [ngClass]="{ 'is-invalid': registerForm.get('cnfmPasswd').touched && registerForm.errors.confirmPassword }"/>
+        <div *ngIf="registerForm.get('cnfmPasswd').touched && registerForm.errors.confirmPassword" class="invalid-feedback">
           <div *ngIf="registerForm.errors.confirmPassword">Password and Confirm password didn't match</div>
         </div>
       </div>
       <div class="form-group">
         <label for="ref" class="text-dark">Referral code</label>
         <input type="text" id="ref" formControlName="ref" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.ref.errors }"/>
-        <div *ngIf="submitted && f.ref.errors" class="invalid-feedback">
+               [ngClass]="{ 'is-invalid': f.ref.touched && f.ref.errors }"/>
+        <div *ngIf="f.ref.touched && f.ref.errors" class="invalid-feedback">
           <div *ngIf="f.ref.errors.required">Referral code is required</div>
         </div>
       </div>

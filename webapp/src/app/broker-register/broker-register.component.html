@@ -23,33 +23,35 @@
           </div>
         </div>
       </div>
+      <div class="form-group">
+        <label for="clientId" class="text-dark">Client Id</label>
+        <input type="text" class="form-control" formControlName="cId" id="clientId" aria-describedby="fullNameHelp"
+               placeholder="Enter client id">
+      </div>
       <div style="display: flex;align-items: baseline">
-      <button type="button" class="form-group btn btn-primary align-elements" (click)="generateBrokerRegURL()">Generate URLs</button>
+        <button type="button" class="form-group btn btn-primary align-elements" (click)="generateBrokerRegURL()">
+          Generate URLs
+        </button>
         <i class="fas fa-info" style="color: darkcyan" data-toggle="popover"
            title="Want to know how to register us with your broker. Click here"></i>
       </div>
       <div class="form-group" *ngIf="showUrls">
         <div class="text-muted">
           <label>Redirect URL &nbsp; :</label>
-          <span>&nbsp; http://xyz.kite_jh5767&ds.in</span>
+          <span>&nbsp; {{redirectUrl}}</span>
         </div>
         <div class="text-muted">
           <label>Postback URL &nbsp; :</label>
-          <span>&nbsp; http://xyz.kite_jh5ds343we767&ds.in</span>
+          <span>&nbsp; {{postbackUrl}}</span>
         </div>
       </div>
       <div class="form-group">
-        <label for="clientId" class="text-dark">Client Id</label>
-        <input type="text" class="form-control" formControlName="clientId" id="clientId" aria-describedby="fullNameHelp"
-               placeholder="Enter client id">
-      </div>
-      <div class="form-group">
         <label for="apiKey" class="text-dark">Api Key</label>
-        <input class="form-control" type="password" formControlName="apiKey" id="apiKey">
+        <input class="form-control" type="password" formControlName="aK" id="apiKey">
       </div>
       <div class="form-group">
         <label for="apiSecret" class="text-dark">Api Secret</label>
-        <input class="form-control" type="password" formControlName="apiSecret" id="apiSecret">
+        <input class="form-control" type="password" formControlName="aS" id="apiSecret">
       </div>
       <button type="button" class="btn btn-primary align-elements" (click)="updateBroker()">Update Broker</button>
       <button type="reset" class="btn btn-light" (click)="skip()">Skip</button>

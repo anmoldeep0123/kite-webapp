@@ -9,12 +9,12 @@ import {BrokerRegisterComponent} from './broker-register/broker-register.compone
 import {VerifyEmailComponent} from './verify-email/verify-email.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: UserProfileComponent},
-  {path: 'registerbroker', component: BrokerRegisterComponent},
-  {path: 'verifyEmail', component: VerifyEmailComponent},
+  {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
+  {path: 'registerbroker', component: BrokerRegisterComponent, canActivate: [AuthGuard]},
+  {path: 'verifyEmail', component: VerifyEmailComponent, canActivate: [AuthGuard]},
 
   // otherwise redirect to home
   {path: '**', redirectTo: ''}

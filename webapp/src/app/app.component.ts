@@ -9,7 +9,7 @@ import {AuthenticationService} from './service/authentication.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  currentUser: UserRegister;
+  currentUser: string;
 
   constructor(private router: Router, private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);

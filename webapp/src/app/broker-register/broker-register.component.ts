@@ -17,6 +17,8 @@ export class BrokerRegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  redirectUrl: string;
+  postbackUrl: string;
 
   constructor(private router: Router, private profileRegisterService: ProfileRegisterService,
               private alertService: AlertService) {
@@ -24,10 +26,9 @@ export class BrokerRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.brokerForm = new FormGroup({
-      brokerName: new FormControl('zerodha'),
-      clientId: new FormControl(''),
-      apiKey: new FormControl(''),
-      apiSecret: new FormControl(''),
+      cId: new FormControl(''),
+      aK: new FormControl(''),
+      aS: new FormControl(''),
     });
   }
 
@@ -39,8 +40,8 @@ export class BrokerRegisterComponent implements OnInit {
   updateBroker() {
     this.submitted = true;
     const salt = bcrypt.genSaltSync(10);
-    this.brokerForm.get('apiSecret').setValue(bcrypt.hashSync(this.brokerForm.value.apiSecret, salt));
-    this.brokerForm.get('apiKey').setValue(bcrypt.hashSync(this.brokerForm.value.apiKey, salt));
+    this.brokerForm.get('aS').setValue(bcrypt.hashSync(this.brokerForm.value.aS, salt));
+    this.brokerForm.get('aK').setValue(bcrypt.hashSync(this.brokerForm.value.aK, salt));
 
     // stop here if form is invalid
     if (this.brokerForm.invalid) {
@@ -48,11 +49,12 @@ export class BrokerRegisterComponent implements OnInit {
     }
 
     this.loading = true;
-    this.profileRegisterService.registerBroker(this.brokerForm.value)
+    this.profileRegisterService.registerBroker('zrd', this.brokerForm.value)
       .pipe(first())
       .subscribe(
         data => {
           this.alertService.success('Broker registration successful', true);
+          this.loading = false;
           this.router.navigate(['/dashboard']);
         },
         error => {
@@ -63,5 +65,7 @@ export class BrokerRegisterComponent implements OnInit {
 
   generateBrokerRegURL() {
     this.showUrls = true;
+    this.redirectUrl = `https://${window.location.hostname}:${window.location.port}/tb/ui/v1/kdev/${this.brokerForm.get('cId').value}/get`;
+    this.postbackUrl = `https://${window.location.hostname}:${window.location.port}/tb/ui/v1/kdev/${this.brokerForm.get('cId').value}/back`;
   }
 }

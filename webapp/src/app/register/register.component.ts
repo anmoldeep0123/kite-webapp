@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private userService: UserService,
     private alertService: AlertService
   ) {
     // redirect to home if already logged in
@@ -52,12 +51,13 @@ export class RegisterComponent implements OnInit {
     }
 
     this.loading = true;
-    this.userService.register(this.registerForm.value)
+    this.authenticationService.register(this.registerForm.value)
       .subscribe((data: any) => {
-          localStorage.setItem('cusId', data.response.cusId);
-          localStorage.setItem('sts', data.response.sts);
-          localStorage.setItem('email', data.response.email);
+          sessionStorage.setItem('cusId', data.response.cusId);
+          sessionStorage.setItem('sts', data.response.sts);
+          sessionStorage.setItem('email', data.response.email);
           this.alertService.success('User Registration successful', true);
+          this.loading = false;
           this.router.navigate(['/verifyEmail']);
         },
         error => {

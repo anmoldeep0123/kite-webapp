@@ -53,10 +53,17 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
     this.authenticationService.login(this.f.email.value, this.f.passwd.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate(['/verifyEmail']);
+      .subscribe((data: any) => {
+          if (data.response.sts === 'VALIDATED') {
+            this.router.navigate(['/profile']);
+          } else if (data.response.sts === 'REGISTERED') {
+            this.router.navigate(['/verifyEmail']);
+          } else if (data.response.sts === 'PROFILE') {
+            this.router.navigate(['/broker']);
+          } else {
+            this.router.navigate(['/dashboard']);
+          }
+          this.loading = false;
         },
         error => {
           this.alertService.error(error);

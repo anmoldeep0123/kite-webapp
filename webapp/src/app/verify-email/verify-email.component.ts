@@ -23,8 +23,8 @@ export class VerifyEmailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userEmail = localStorage.getItem('email');
-    this.customerId = localStorage.getItem('cusId');
+    this.userEmail = sessionStorage.getItem('email');
+    this.customerId = sessionStorage.getItem('cusId');
   }
 
   generateOtp() {
@@ -63,6 +63,7 @@ export class VerifyEmailComponent implements OnInit {
           } else {
             this.alertService.error('Invalid Otp, Please enter 6 digit Otp sent to your registered email', true);
           }
+          this.loading = false;
         },
         error => {
           this.alertService.error(error);
