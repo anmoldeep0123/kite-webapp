@@ -1,6 +1,6 @@
-<h2>Register</h2>
 <div class="card">
   <div class="card-body">
+    <h2>Register</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="phnNum" class="text-dark">Phone number</label>
@@ -33,7 +33,8 @@
         <label for="cnfmPassword" class="text-dark">Confirm password</label>
         <input type="password" id="cnfmPassword" formControlName="cnfmPasswd" class="form-control"
                [ngClass]="{ 'is-invalid': registerForm.get('cnfmPasswd').touched && registerForm.errors.confirmPassword }"/>
-        <div *ngIf="registerForm.get('cnfmPasswd').touched && registerForm.errors.confirmPassword" class="invalid-feedback">
+        <div *ngIf="registerForm.get('cnfmPasswd').touched && registerForm.errors.confirmPassword"
+             class="invalid-feedback">
           <div *ngIf="registerForm.errors.confirmPassword">Password and Confirm password didn't match</div>
         </div>
       </div>
