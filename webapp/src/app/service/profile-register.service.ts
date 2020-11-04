@@ -11,7 +11,7 @@ export class ProfileRegisterService {
   }
 
   profile(profile: UserProfile) {
-    return this.http.post<any>(`/tb/ui/v1/actions/users/profile`, {profile});
+    return this.http.post<any>(`/tb/ui/v1/actions/users/profile`, profile);
   }
 
   registerBroker(brokerType, broker: BrokerRegisteration) {
