@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
           } else if (data.response.sts === 'REGISTERED') {
             this.router.navigate(['/verifyEmail']);
           } else if (data.response.sts === 'PROFILE') {
-            this.router.navigate(['/broker']);
+            this.router.navigate(['/registerbroker']);
           } else if (data.response.sts === 'BROKER') {
             this.router.navigate(['/dashboard']);
           }
