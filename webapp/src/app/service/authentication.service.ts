@@ -23,11 +23,9 @@ export class AuthenticationService {
     return this.http.post<any>(`/tb/ui/v1/users/login`, {username, password})
       .pipe(map((data: any) => {
         // login successful if there's a jwt token in the response
-        if (data.response && data.response.sts === 'BROKER') {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          sessionStorage.setItem('currentUser', data.response.cusId);
-          this.currentUserSubject.next(data.response.cusId);
-        }
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        sessionStorage.setItem('currentUser', data.response.cusId);
+        this.currentUserSubject.next(data.response.cusId);
         return data;
       }));
   }

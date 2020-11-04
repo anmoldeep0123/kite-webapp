@@ -1,13 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {UserRegister} from '../models/user-register';
 
 
 @Injectable({providedIn: 'root'})
 export class VerifyEmailService {
-  private currentUserSubject: BehaviorSubject<UserRegister>;
-  public currentUser: Observable<UserRegister>;
 
   constructor(private http: HttpClient) {
   }
