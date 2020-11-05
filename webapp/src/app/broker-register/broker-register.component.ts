@@ -57,7 +57,7 @@ export class BrokerRegisterComponent implements OnInit {
     }
 
     this.loading = true;
-    this.profileRegisterService.registerBroker('zrd', this.brokerForm.value)
+    this.profileRegisterService.registerBroker('zrd', this.brokerForm.value, salt, four)
       .pipe(first())
       .subscribe(
         data => {

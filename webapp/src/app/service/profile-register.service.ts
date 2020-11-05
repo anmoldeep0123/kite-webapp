@@ -14,9 +14,11 @@ export class ProfileRegisterService {
     return this.http.post<any>(`/tb/ui/v1/actions/users/profile`, profile);
   }
 
-  registerBroker(brokerType, broker: BrokerRegisteration) {
+  registerBroker(brokerType, broker: BrokerRegisteration, salt, four) {
     return this.http.post<any>(`/tb/ui/v1/actions/users/broker`, {
-      zrd: broker
+      zrd: broker,
+      sl: salt,
+      ivec: four
     });
   }
 }
