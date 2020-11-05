@@ -39,9 +39,9 @@ export class BrokerRegisterComponent implements OnInit {
 
   updateBroker() {
     this.submitted = true;
-    const salt = bcrypt.genSaltSync(10);
-    this.brokerForm.get('aS').setValue(bcrypt.hashSync(this.brokerForm.value.aS, salt));
-    this.brokerForm.get('aK').setValue(bcrypt.hashSync(this.brokerForm.value.aK, salt));
+    // const salt = bcrypt.genSaltSync(10);
+    //this.brokerForm.get('aS').setValue(bcrypt.hashSync(this.brokerForm.value.aS, salt));
+    //this.brokerForm.get('aK').setValue(bcrypt.hashSync(this.brokerForm.value.aK, salt));
 
     // stop here if form is invalid
     if (this.brokerForm.invalid) {
