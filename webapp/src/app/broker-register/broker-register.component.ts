@@ -4,7 +4,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {ProfileRegisterService} from '../service/profile-register.service';
 import {AlertService} from '../service/alert.service';
-import * as bcrypt from 'bcryptjs';
+import * as CryptoJS from 'crypto-js';
+import {AesUtil} from '../helpers/aesUtil';
 
 @Component({
   selector: 'app-broker-register',
@@ -19,6 +20,11 @@ export class BrokerRegisterComponent implements OnInit {
   returnUrl: string;
   redirectUrl: string;
   postbackUrl: string;
+  iterationCount = 1000;
+  keySize = 128;
+  passphrase = 'a3y5cdef1897';
+  aesUtil = new AesUtil();
+
 
   constructor(private router: Router, private profileRegisterService: ProfileRegisterService,
               private alertService: AlertService) {
@@ -39,10 +45,12 @@ export class BrokerRegisterComponent implements OnInit {
 
   updateBroker() {
     this.submitted = true;
-    const salt = bcrypt.genSaltSync(10);
-    this.brokerForm.get('aS').setValue(bcrypt.hashSync(this.brokerForm.value.aS, salt));
-    this.brokerForm.get('aK').setValue(bcrypt.hashSync(this.brokerForm.value.aK, salt));
-
+    const four = CryptoJS.lib.WordArray.random(128 / 8).toString(CryptoJS.enc.Hex);
+    const salt = CryptoJS.lib.WordArray.random(128 / 8).toString(CryptoJS.enc.Hex);
+    const encryptaS = this.aesUtil.encrypt(salt, four, this.passphrase, this.brokerForm.value.aS);
+    const encryptaK = this.aesUtil.encrypt(salt, four, this.passphrase, this.brokerForm.value.aK);
+    this.brokerForm.get('aS').setValue(encryptaS);
+    this.brokerForm.get('aK').setValue(encryptaK);
     // stop here if form is invalid
     if (this.brokerForm.invalid) {
       return;
