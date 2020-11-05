@@ -2,14 +2,17 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/">Dashboard</a>
-<!--    <a class="nav-item nav-link" routerLink="/profile">Profile settings</a>-->
-<!--    <a class="nav-item nav-link" routerLink="/verifyEmail">Verify Email</a>-->
+    <!--    <a class="nav-item nav-link" routerLink="/profile">Profile settings</a>-->
+    <!--    <a class="nav-item nav-link" routerLink="/verifyEmail">Verify Email</a>-->
     <a class="nav-item nav-link" (click)="logout()">Logout</a>
   </div>
 </nav>
 
 <!-- main app container -->
-<div class="jumbotron text-white" style="height: 100vh;background-color:#0c8996">
+<div class="view"
+     style="background-image: url('assets/images/StockMarketStock.jpg');
+      background-repeat: no-repeat; background-size: cover; background-position: center center;height: 100vh;">
+  <!--<div class="jumbotron text-white" style="height: 100vh;background-color:#0c8996">-->
   <div class="container">
     <div class="row">
       <div class="col-sm-6 offset-sm-3">
