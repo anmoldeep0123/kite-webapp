@@ -27,4 +27,16 @@ export class AesUtil {
       {iv: CryptoJS.enc.Hex.parse(iv)});
     return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
   }
+
+  decrypt(salt, iv, passPhrase, cipherText) {
+    const key = this.generateKey(salt, passPhrase);
+    const cipherParams = CryptoJS.lib.CipherParams.create({
+      ciphertext: CryptoJS.enc.Base64.parse(cipherText)
+    });
+    const decrypted = CryptoJS.AES.decrypt(
+      cipherParams,
+      key,
+      {iv: CryptoJS.enc.Hex.parse(iv)});
+    return decrypted.toString(CryptoJS.enc.Utf8);
+  }
 }
