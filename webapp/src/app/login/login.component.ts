@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertService} from "../service/alert.service";
-import {AuthenticationService} from "../service/authentication.service";
+import {AlertService} from '../service/alert.service';
+import {AuthenticationService} from '../service/authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
   // convenience getter for easy access to form fields

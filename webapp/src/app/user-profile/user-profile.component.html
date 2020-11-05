@@ -12,26 +12,36 @@
       </h3>
       <hr>
       <div class="form-group">
-        <label for="fullName" class="text-dark">Full Name</label>
+        <label for="fullName" class="text-dark">First Name</label>
         <input type="text" class="form-control" formControlName="fn"
                id="fullName" aria-describedby="fullNameHelp"
                placeholder="Enter your full name">
-        <small id="fullNameHelp" class="form-text text-muted">Your name may appear in the application. You can change or
-          remove it at any time.</small>
       </div>
-      <div class="form-group">
-        <label for="gender" class="text-dark">Gender</label>
-        <input class="form-control" formControlName="gdr" id="gender">
+      <div class="form-group" style="padding-bottom: 1rem;">
+        <label for="nickName" class="text-dark">Last name</label>
+        <input type="text" formControlName="ln" class="form-control" id="nickName">
       </div>
-      <div class="form-group">
-        <label for="nickName" class="text-dark">Nick name</label>
-        <input type="text" formControlName="nik" class="form-control" id="nickName">
+      <div class="input-group mb-3">
+        <select class="custom-select" formControlName="gdr" id="inputGroupSelect02">
+<!--          <option selected>Choose...</option>-->
+          <option value="M" selected>Male</option>
+          <option value="F">Female</option>
+          <option value="O">Other</option>
+        </select>
+        <div class="input-group-append">
+          <label class="input-group-text" for="inputGroupSelect02">Gender</label>
+        </div>
       </div>
+<!--      <div class="form-group">-->
+<!--        <label for="gender" class="text-dark">Gender</label>-->
+<!--        <input class="form-control" formControlName="gdr" id="gender">-->
+<!--      </div>-->
       <div class="form-group">
         <label for="dob" class="text-dark">Date of birth</label>
         <input type="date" formControlName="dob" class="form-control" id="dob">
+        {{profileForm.get('dob').errors}}
       </div>
-      <button type="button" class="btn btn-primary align-elements" (click)="updateProfile()">Update Profile</button>
+      <button type="button" class="btn btn-primary align-elements" [disabled]="profileForm.invalid" (click)="updateProfile()">Update Profile</button>
       <button type="reset" class="btn btn-light" (click)="skip()">Skip</button>
     </div>
   </div>

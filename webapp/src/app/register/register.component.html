@@ -4,7 +4,7 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="phnNum" class="text-dark">Phone number</label>
-        <input type="text" id="phnNum" formControlName="phnNum" class="form-control"
+        <input type="text" id="phnNum" autofocus formControlName="phnNum" class="form-control"
                [ngClass]="{ 'is-invalid': f.phnNum.touched && f.phnNum.errors }"/>
         <div *ngIf="f.phnNum.touched && f.phnNum.errors" class="invalid-feedback">
           <div *ngIf="f.phnNum.errors.required">Phone number is required</div>
@@ -53,7 +53,7 @@
         </button>
         <label class="d-flex justify-content-center text-dark" style="padding-top:1rem">or</label>
         <div class="d-flex justify-content-center">
-          <label for="ref" class="text-dark">Already on TradeGenie?&nbsp;</label>
+          <label for="ref" class="text-dark">Already on TradeBull?&nbsp;</label>
           <a routerLink="/login" class="text-primary">Sign in</a>
         </div>
       </div>

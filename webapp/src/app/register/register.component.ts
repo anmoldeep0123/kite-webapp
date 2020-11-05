@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.pattern('^([\\w+-.%]+@[\\w-.]+\\.[A-Za-z]{1,})$')]),
       passwd: new FormControl('', [Validators.required, Validators.minLength(4)]),
       cnfmPasswd: new FormControl('')
-    }, confirmPassword('passwd', 'cnfmPasswd'));
+    }, confirmPassword());
   }
 
   // convenience getter for easy access to form fields

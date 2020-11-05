@@ -4,7 +4,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="email" class="text-dark">Email or phone number</label>
-        <input type="text" id="email" formControlName="email" class="form-control"
+        <input type="text" autofocus id="email" formControlName="email" class="form-control"
                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required">Email/Phone no. is required</div>
@@ -25,7 +25,7 @@
         </button>
         <label class="d-flex justify-content-center text-dark" style="padding-top:1rem">or</label>
         <div class="d-flex justify-content-center">
-          <label class="text-dark">New on TradeGenie?&nbsp;</label>
+          <label class="text-dark">New on TradeBull?&nbsp;</label>
           <a routerLink="/register" class="text-primary">Register</a>
         </div>
       </div>
