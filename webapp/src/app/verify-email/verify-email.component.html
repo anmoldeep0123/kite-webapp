@@ -13,25 +13,36 @@
       <div>
         <h3 class="text-dark">Let's confirm your email</h3>
       </div>
-      <button type="button" class="form-group btn btn-primary align-elements" (click)="generateOtp()"
-      [disabled]="!generateOtpBtn">Generate Otp
-      </button>
+<!--      <button type="button" class="form-group btn btn-primary align-elements" (click)="generateOtp()"-->
+<!--              [disabled]="!otpCounter && generateOtpBtn">Generate Otp-->
+<!--      </button>-->
       <div>
-        <small id="fullNameHelp" class="form-text text-muted">Type in the six digit code we sent below</small>
+        <small id="fullNameHelp" class="form-text text-muted">Type in the six digit code we sent to your mail id</small>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" aria-describedby="opt" [(ngModel)]="otpValue"
-               placeholder="Enter otp">
+      <div class="form-group" [formGroup]="otpForm">
+        <input type="text" class="form-control" aria-describedby="opt" formControlName="otp"
+               placeholder="Enter otp"
+               [ngClass]="{ 'is-invalid': otpForm.get('otp').dirty && otpForm.get('otp').invalid }">
+        <app-form-error-container class="invalid-feedback" [control]="otpForm.get('otp')">
+          <app-form-error type="required">
+            Otp is required.
+          </app-form-error>
+          <app-form-error type="pattern">
+            Otp should be 6 digit number
+          </app-form-error>
+        </app-form-error-container>
       </div>
       <div class="form-group" style="padding-top:1rem">
-        <button [disabled]="loading" class="btn btn-primary btn-block" (click)="verifyOtp()">
+        <button [disabled]="otpForm.invalid" class="btn btn-primary btn-block" (click)="verifyOtp()">
           <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
           Confirm Otp
         </button>
         <div class="d-flex justify-content-center" style="padding-top:1rem">
           <label class="text-dark">Didn't receive the code?&nbsp;</label>
-          <a class="text-primary" style="cursor: pointer" (click)="generateOtp()" *ngIf="generateOtpBtn">Send again</a>
-          <a class="disabled" *ngIf="!generateOtpBtn">Send again</a>
+          <a class="text-primary" style="cursor: pointer" (click)="generateOtp()"
+             *ngIf="otpCounter && generateOtpBtn">
+            Send again</a>
+          <a class="disabled" *ngIf="!(otpCounter) && generateOtpBtn">Send again</a>
         </div>
       </div>
     </div>

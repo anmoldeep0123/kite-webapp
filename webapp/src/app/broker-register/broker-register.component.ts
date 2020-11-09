@@ -24,6 +24,8 @@ export class BrokerRegisterComponent implements OnInit {
   keySize = 128;
   passphrase = 'a3y5cdef1897';
   aesUtil = new AesUtil();
+  selectedBroker: string;
+  broker: string;
 
 
   constructor(private router: Router, private profileRegisterService: ProfileRegisterService,
@@ -32,10 +34,13 @@ export class BrokerRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.brokerForm = new FormGroup({
+      bn: new FormControl(''),
       cId: new FormControl(''),
       aK: new FormControl(''),
       aS: new FormControl(''),
     });
+    this.brokerForm.get('bn').valueChanges.subscribe(() => (this.brokerForm.get('bn').value === 'zrd') ? (this.selectedBroker = 'Zerodha') :
+      this.selectedBroker = 'AliceBlue');
   }
 
   // tslint:disable-next-line:typedef
@@ -62,7 +67,7 @@ export class BrokerRegisterComponent implements OnInit {
     }
 
     this.loading = true;
-    this.profileRegisterService.registerBroker('zrd', this.brokerForm.value, salt, four)
+    this.profileRegisterService.registerBroker(this.brokerForm.get('bn').value, this.brokerForm.value, salt, four)
       .pipe(first())
       .subscribe(
         data => {
@@ -80,6 +85,11 @@ export class BrokerRegisterComponent implements OnInit {
     this.showUrls = true;
     this.redirectUrl = `https://${window.location.hostname}:${window.location.port}/tb/ui/v1/kdev/${this.brokerForm.get('cId').value}/get`;
     this.postbackUrl = `https://${window.location.hostname}:${window.location.port}/tb/ui/v1/kdev/${this.brokerForm.get('cId').value}/back`;
+  }
+
+  selectedBrokerHandler() {
+    (this.brokerForm.get('bn').value === 'zrd') ? (this.selectedBroker = 'Zerodha') :
+      this.selectedBroker = 'AliceBlue';
   }
 
   // encrypt(){

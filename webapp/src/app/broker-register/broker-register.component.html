@@ -12,19 +12,14 @@
       </h3>
       <hr>
       <div class="form-group">
-        <!--        <div class="small text-muted">You have not added any broker yet.</div>-->
-        <div class="dropdown">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-            Select Broker
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item">Zerodha</a>
-            <a class="dropdown-item">AliceBlue</a>
-          </div>
-        </div>
+        <label for="brokerName" class="text-dark">Broker name</label>
+        <select class="custom-select" formControlName="bn" id="brokerName">
+          <option value="zrd" selected>Zerodha</option>
+          <option value="alcb">AliceBlue</option>
+        </select>
       </div>
       <div class="form-group">
-        <label for="clientId" class="text-dark">Client Id</label>
+        <label for="clientId" class="text-dark">{{selectedBroker}} Client Id</label>
         <input type="text" class="form-control" formControlName="cId" id="clientId" aria-describedby="fullNameHelp"
                placeholder="Enter client id">
       </div>
@@ -38,12 +33,17 @@
       <div class="form-group" *ngIf="showUrls">
         <div class="text-muted">
           <label>Redirect URL &nbsp; :</label>
-          <span>&nbsp; {{redirectUrl}}</span>
+          <span style="margin-right: 0.5rem">&nbsp; {{redirectUrl}}</span>
+          <button [cdkCopyToClipboard]="redirectUrl"><i class="fas fa-copy" style="color: darkcyan"></i>
+          </button>
         </div>
         <div class="text-muted">
           <label>Postback URL &nbsp; :</label>
-          <span>&nbsp; {{postbackUrl}}</span>
+          <span style="margin-right: 0.5rem">&nbsp; {{postbackUrl}}</span>
+          <button [cdkCopyToClipboard]="postbackUrl"><i class="fas fa-copy" style="color: darkcyan"></i>
+          </button>
         </div>
+        <!--        <span class="material-icons">content_copy</span></button>-->
       </div>
       <div class="form-group">
         <label for="apiKey" class="text-dark">Api Key</label>

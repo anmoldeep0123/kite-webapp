@@ -3,6 +3,7 @@ import {first} from 'rxjs/operators';
 import {VerifyEmailService} from '../service/verify-email.service';
 import {Router} from '@angular/router';
 import {AlertService} from '../service/alert.service';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-verify-email',
@@ -14,10 +15,11 @@ export class VerifyEmailComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   userEmail: string;
-  otpValue: string;
   customerId: string;
-  generateOtpCounter: number = 0;
-  generateOtpBtn: boolean = true;
+  generateOtpCounter = 0;
+  generateOtpBtn = true;
+  otpCounter = true;
+  otpForm: FormGroup
 
   constructor(private verifyEmailService: VerifyEmailService, private router: Router, private alertService: AlertService) {
   }
@@ -25,20 +27,25 @@ export class VerifyEmailComponent implements OnInit {
   ngOnInit(): void {
     this.userEmail = sessionStorage.getItem('email');
     this.customerId = sessionStorage.getItem('cusId');
+    this.otpForm = new FormGroup({
+      otp: new FormControl('', [Validators.required, Validators.pattern('\\d{6}')] ),
+    });
   }
 
   generateOtp() {
     this.submitted = true;
     this.generateOtpCounter = this.generateOtpCounter + 1;
     this.loading = true;
+    this.generateOtpBtn = false;
+    setTimeout(() => this.generateOtpBtn = true, 60000);
     this.verifyEmailService.sendOtp({
       cusId: this.customerId,
       email: this.userEmail,
       ct: this.generateOtpCounter
     }).subscribe((data: any) => {
-        this.alertService.success('Email notification sent', true);
+        this.alertService.success('Email notification sent. Please request for new Otp after 1min.', true);
         this.loading = false;
-        this.generateOtpBtn = data.response.ctLeft;
+        this.otpCounter = data.response.ctLeft;
       },
       error => {
         this.alertService.error(error);
@@ -53,7 +60,7 @@ export class VerifyEmailComponent implements OnInit {
     this.verifyEmailService.checkOtp({
       cusId: this.customerId,
       email: this.userEmail,
-      e_otp: this.otpValue
+      e_otp: this.otpForm.value
     })
       .pipe(first())
       .subscribe((data: any) => {

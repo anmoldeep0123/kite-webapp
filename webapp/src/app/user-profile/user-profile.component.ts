@@ -11,7 +11,7 @@ import {checkForFutureDates} from '../helpers/validators';
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
-  providers:[DatePipe]
+  providers: [DatePipe]
 })
 export class UserProfileComponent implements OnInit {
   profileForm: FormGroup;

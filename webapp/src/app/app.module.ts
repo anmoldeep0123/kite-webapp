@@ -16,6 +16,9 @@ import {BrokerRegisterComponent} from './broker-register/broker-register.compone
 import {VerifyEmailComponent} from './verify-email/verify-email.component';
 import {DatePipe} from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {FormErrorComponent} from './common/form-error/form-error.component';
+import {FormErrorContainerComponent} from "./common/form-error-container/form-error-container.component";
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import {MatInputModule} from '@angular/material/input';
     UserProfileComponent,
     BrokerRegisterComponent,
     VerifyEmailComponent,
+    FormErrorComponent,
+    FormErrorContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import {MatInputModule} from '@angular/material/input';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    ClipboardModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
