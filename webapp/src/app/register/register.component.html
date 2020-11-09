@@ -4,17 +4,22 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="phnNum" class="text-dark">Phone number</label>
-        <input type="tel" id="phnNum" autofocus formControlName="phnNum" class="form-control"
-               placeholder="Enter 10 digit number starting from +91 or 0"
-               [ngClass]="{ 'is-invalid': f.phnNum.dirty && f.phnNum.invalid }"/>
-        <app-form-error-container class="invalid-feedback" [control]="registerForm.get('phnNum')">
-          <app-form-error type="required">
-            Phone number is required.
-          </app-form-error>
-          <app-form-error type="pattern">
-            Phone number must have 10 digits
-          </app-form-error>
-        </app-form-error-container>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">91</span>
+          </div>
+          <input type="text" class="form-control" autofocus formControlName="phnNum" id="phnNum"
+                 aria-describedby="basic-addon1" placeholder="Enter 10 digit number"
+                 [ngClass]="{ 'is-invalid': f.phnNum.dirty && f.phnNum.invalid }">
+          <app-form-error-container class="invalid-feedback" [control]="registerForm.get('phnNum')">
+            <app-form-error type="required">
+              Phone number is required.
+            </app-form-error>
+            <app-form-error type="pattern">
+              Phone number must have 10 digits
+            </app-form-error>
+          </app-form-error-container>
+        </div>
       </div>
       <div class="form-group">
         <label for="email" class="text-dark">Email</label>
