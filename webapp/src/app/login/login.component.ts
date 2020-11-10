@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authenticationService.login(this.f.email.value, this.f.passwd.value)
       .subscribe((data: any) => {
-          if (data.status === 302) {
+          if (data.redirectTo === 'Kite-Authentication') {
             this.router.navigate(['/brokerUrl']);
           }
           if (data.response.sts === 'VALIDATED') {
