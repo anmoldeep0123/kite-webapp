@@ -52,17 +52,21 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authenticationService.login(this.f.email.value, this.f.passwd.value)
       .subscribe((data: any) => {
-          if (data.redirectTo === 'Kite-Authentication') {
-            this.router.navigate(['/brokerUrl']);
-          }
-          if (data.response.sts === 'VALIDATED') {
-            this.router.navigate(['/profile']);
-          } else if (data.response.sts === 'REGISTERED') {
-            this.router.navigate(['/verifyEmail']);
-          } else if (data.response.sts === 'PROFILE') {
-            this.router.navigate(['/registerbroker']);
-          } else if (data.response.sts === 'BROKER') {
-            this.router.navigate(['/dashboard']);
+          if (data && data.redirectTo === 'Kite-Authentication') {
+            window.location.href = ('https://kite.zerodha.com/connect/login?v=3&api_key=6o1xtbz3t0u1dg6i');
+          } else if (data) {
+            console.log('hello');
+            sessionStorage.setItem('currentUser', data.response.cusId);
+            this.authenticationService.currentUserSubject.next(data.response.cusId);
+            if (data.response.sts === 'VALIDATED') {
+              this.router.navigate(['/profile']);
+            } else if (data.response.sts === 'REGISTERED') {
+              this.router.navigate(['/verifyEmail']);
+            } else if (data.response.sts === 'PROFILE') {
+              this.router.navigate(['/registerbroker']);
+            } else if (data.response.sts === 'BROKER') {
+              this.router.navigate(['/dashboard']);
+            }
           }
           this.loading = false;
         },

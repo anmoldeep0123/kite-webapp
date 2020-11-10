@@ -7,7 +7,7 @@ import {UserRegister} from '../models/user-register';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<string>;
+  public currentUserSubject: BehaviorSubject<string>;
   public currentUser: Observable<string>;
 
   constructor(private http: HttpClient) {
@@ -20,13 +20,11 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`/tb/ui/v1/users/login`, {username, password})
-      .pipe(map((data: any) => {
-        // login successful if there's a jwt token in the response
+    return this.http.post<any>(`/tb/ui/v1/users/login`, {username, password});
+    // login successful if there's a jwt token in the response
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        sessionStorage.setItem('currentUser', data.response.cusId);
-        this.currentUserSubject.next(data.response.cusId);
-      }));
+        // sessionStorage.setItem('currentUser', data.response.cusId);
+        // this.currentUserSubject.next(data.response.cusId)
   }
 
   register(user: UserRegister) {

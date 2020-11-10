@@ -4,7 +4,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="email" class="text-dark">Email or phone number</label>
-        <input type="text" autofocus id="email" formControlName="email" class="form-control"
+        <input type="text" id="email" formControlName="email" class="form-control"
                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required">Email/Phone no. is required</div>
