@@ -19,7 +19,8 @@ export class VerifyEmailComponent implements OnInit {
   generateOtpCounter = 0;
   generateOtpBtn = true;
   otpCounter = true;
-  otpForm: FormGroup
+  otpForm: FormGroup;
+  otpValue: number;
 
   constructor(private verifyEmailService: VerifyEmailService, private router: Router, private alertService: AlertService) {
   }
@@ -28,7 +29,7 @@ export class VerifyEmailComponent implements OnInit {
     this.userEmail = sessionStorage.getItem('email');
     this.customerId = sessionStorage.getItem('cusId');
     this.otpForm = new FormGroup({
-      otp: new FormControl('', [Validators.required, Validators.pattern('\\d{6}')] ),
+      otp: new FormControl('', [Validators.required, Validators.pattern('\\d{6}')]),
     });
   }
 
@@ -55,12 +56,12 @@ export class VerifyEmailComponent implements OnInit {
 
   verifyOtp() {
     this.submitted = true;
-
+    this.otpValue = this.otpForm.value;
     this.loading = true;
     this.verifyEmailService.checkOtp({
       cusId: this.customerId,
       email: this.userEmail,
-      e_otp: this.otpForm.value
+      e_otp: this.otpValue
     })
       .pipe(first())
       .subscribe((data: any) => {
