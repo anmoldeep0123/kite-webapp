@@ -19,6 +19,7 @@ import {MatInputModule} from '@angular/material/input';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {FormErrorComponent} from './common/form-error/form-error.component';
 import {FormErrorContainerComponent} from "./common/form-error-container/form-error-container.component";
+import { BrokerUrlComponent } from './broker-url/broker-url.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {FormErrorContainerComponent} from "./common/form-error-container/form-er
     BrokerRegisterComponent,
     VerifyEmailComponent,
     FormErrorComponent,
-    FormErrorContainerComponent
+    FormErrorContainerComponent,
+    BrokerUrlComponent
   ],
   imports: [
     BrowserModule,

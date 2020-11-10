@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
@@ -53,6 +52,9 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authenticationService.login(this.f.email.value, this.f.passwd.value)
       .subscribe((data: any) => {
+          if (data.status === 302) {
+            this.router.navigate(['/brokerUrl']);
+          }
           if (data.response.sts === 'VALIDATED') {
             this.router.navigate(['/profile']);
           } else if (data.response.sts === 'REGISTERED') {
