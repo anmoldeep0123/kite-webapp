@@ -42,6 +42,7 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
+    this.http.get(`/tb/ui/v1/actions/users/logout`).subscribe();
     sessionStorage.clear();
     this.currentUserSubject.next(null);
   }
