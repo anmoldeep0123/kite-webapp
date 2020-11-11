@@ -55,8 +55,9 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('currentUser', data.response.cusId);
           this.authenticationService.currentUserSubject.next(data.response.cusId);
           if (data && data.redirectTo === 'Kite-Authentication') {
-            window.location.href = ('https://kite.zerodha.com/connect/login?v=3&api_key=6o1xtbz3t0u1dg6i');
-          } else if (data) {
+            const apiKey = data.response.ak;
+            window.location.href = (`https://kite.zerodha.com/connect/login?v=3&api_key=${apiKey}`);
+          } else if (data && data.redirectTo === 'TradeBull-Dashboard') {
             console.log('hello');
             if (data.response.sts === 'VALIDATED') {
               this.router.navigate(['/profile']);
