@@ -1,0 +1,45 @@
+<!-- Card -->
+<div class="card" style="margin-top: 4rem">
+
+  <!-- Card content -->
+  <div class="card-body pb-3">
+
+    <!-- Title -->
+    <h4 class="card-title intraday_title">
+      <i class="fas fa-rupee-sign icon-color"></i>Intraday
+      Trending Stocks L1</h4>
+    <!-- Text -->
+    <p class="text-muted">Algo short detail goes here</p>
+    <div class="form-group">
+      <label for="capital" class="text-dark">Maximum capital</label>
+      <input type="number" class="form-control" id="capital" min="500" step="100"
+             placeholder="Enter capital in multiple of 100">
+    </div>
+    <div style="display: flex">
+      <label class="text-dark" style="margin-right: 1rem">Trade daily</label>
+      <mat-slide-toggle color=primary (change)="changed($event)">{{checkDailyRuns}}</mat-slide-toggle>
+    </div>
+    <hr>
+    <div *ngIf="runStatus">
+      <label class="text-dark">Status: <span style="color: #28a745;
+    font-weight: 500">Running</span></label>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar"
+             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+      </div>
+    </div>
+    <div *ngIf="!runStatus">
+      <label class="text-dark">Status: <span style="color: #dc3545;
+    font-weight: 500">Stopped</span></label>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+      </div>
+    </div>
+    <hr>
+    <button type="button" class="btn btn-primary align-elements" (click)="stopRun()">Exit positions & stop</button>
+
+  </div>
+
+</div>
+<!-- Card -->

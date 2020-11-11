@@ -18,8 +18,11 @@ import {DatePipe} from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {FormErrorComponent} from './common/form-error/form-error.component';
-import {FormErrorContainerComponent} from "./common/form-error-container/form-error-container.component";
-import { BrokerUrlComponent } from './broker-url/broker-url.component';
+import {FormErrorContainerComponent} from './common/form-error-container/form-error-container.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {OverlayModule} from '@angular/cdk/overlay';
+import {UserConfigComponent} from './user-config/user-config.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { BrokerUrlComponent } from './broker-url/broker-url.component';
     VerifyEmailComponent,
     FormErrorComponent,
     FormErrorContainerComponent,
-    BrokerUrlComponent
+    DashboardComponent,
+    UserConfigComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,9 @@ import { BrokerUrlComponent } from './broker-url/broker-url.component';
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    ClipboardModule
+    ClipboardModule,
+    OverlayModule,
+    MatSlideToggleModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

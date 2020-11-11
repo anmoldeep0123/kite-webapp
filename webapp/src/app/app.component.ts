@@ -9,12 +9,14 @@ import {AuthenticationService} from './service/authentication.service';
 })
 export class AppComponent {
   currentUser: string;
+  hideUserMenu = true;
 
   constructor(private router: Router, private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   logout() {
+    this.hideUserMenu = true;
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }

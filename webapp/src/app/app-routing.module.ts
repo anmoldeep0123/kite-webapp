@@ -7,7 +7,7 @@ import {AuthGuard} from './helpers/auth.guard';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {BrokerRegisterComponent} from './broker-register/broker-register.component';
 import {VerifyEmailComponent} from './verify-email/verify-email.component';
-import {BrokerUrlComponent} from './broker-url/broker-url.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 const routes: Routes = [
   // {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'registerbroker', component: BrokerRegisterComponent, canActivate: [AuthGuard]},
   {path: 'verifyEmail', component: VerifyEmailComponent, canActivate: [AuthGuard]},
-  {path: 'brokerUrl', component: BrokerUrlComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
 
   // otherwise redirect to home
   {path: '**', redirectTo: ''}

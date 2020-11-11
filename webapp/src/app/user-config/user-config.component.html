@@ -1,0 +1,29 @@
+<img src="assets/images/img_avatar.png" (click)="hideUserMenu=false" cdk-overlay-origin
+     #accountOverlay="cdkOverlayOrigin" class="avatar">
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="accountOverlay"
+             [cdkConnectedOverlayOpen]="!hideUserMenu" cdkConnectedOverlayHasBackdrop="true"
+             cdkConnectedOverlayBackdropClass="transparent-backdrop"
+             (backdropClick)="hideUserMenu=true" (detach)="hideUserMenu=true"
+             [cdkConnectedOverlayPositions]="[{originX:'start',originY:'bottom',overlayX:'end',overlayY:'top',offsetX:50,offsetY:27}]">
+  <div class="user-menu">
+    <div class="user-menu__container">
+      <div class="user-menu__item-header">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="feather feather-user mr-2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>Anmol deep</span>
+      </div>
+      <hr>
+      <a class="user-menu__item" routerLink="/settings" (click)="hideUserMenu=true">
+        <i class="fa fa-user-cog" style="margin-right: 1rem"></i>Profile settings
+      </a>
+      <hr>
+      <a class="user-menu__item" (click)="logout()">
+        <i class="fa fa-power-off" style="margin-right: 1rem"></i>Logout
+      </a>
+    </div>
+  </div>
+</ng-template>
