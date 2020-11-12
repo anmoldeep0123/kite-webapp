@@ -1,60 +1,71 @@
-<div class="card">
-  <div class="card-body">
-    <div class="tab-pane active" [formGroup]="brokerForm" id="profile">
-      <h3 class="text-dark">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             class="feather feather-credit-card mr-2">
-          <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-          <line x1="1" y1="10" x2="23" y2="10"></line>
-        </svg>
-        Register Broker
-      </h3>
-      <hr>
-      <div class="form-group">
-        <label for="brokerName" class="text-dark">Broker name</label>
-        <select class="custom-select" formControlName="bn" id="brokerName">
-          <option value="zrd" selected>Zerodha</option>
-          <option value="alcb">AliceBlue</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="clientId" class="text-dark">{{selectedBroker}} Client Id</label>
-        <input type="text" class="form-control" formControlName="cId" id="clientId" aria-describedby="fullNameHelp"
-               placeholder="Enter client id">
-      </div>
-      <div style="display: flex;align-items: baseline">
-        <button type="button" class="form-group btn btn-primary align-elements" (click)="generateBrokerRegURL()">
-          Generate URLs
-        </button>
-        <i class="fas fa-info" style="color: darkcyan" data-toggle="popover"
-           title="Want to know how to register us with your broker. Click here"></i>
-      </div>
-      <div class="form-group" *ngIf="showUrls">
-        <div class="text-muted">
-          <label>Redirect URL &nbsp; :</label>
-          <span style="margin-right: 0.5rem">&nbsp; {{redirectUrl}}</span>
-          <button [cdkCopyToClipboard]="redirectUrl"><i class="far fa-copy" style="color: darkcyan"></i>
-          </button>
+<div class="view">
+  <div class="primary-class">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+          <app-alert></app-alert>
+          <div class="card">
+            <div class="card-body">
+              <div class="tab-pane active" [formGroup]="brokerForm" id="profile">
+                <h3 class="text-dark">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                       class="feather feather-credit-card mr-2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                  </svg>
+                  Register Broker
+                </h3>
+                <hr>
+                <div class="form-group">
+                  <label for="brokerName" class="text-dark">Broker name</label>
+                  <select class="custom-select" formControlName="bn" id="brokerName">
+                    <option value="zrd" selected>Zerodha</option>
+                    <option value="alcb">AliceBlue</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="clientId" class="text-dark">{{selectedBroker}} Client Id</label>
+                  <input type="text" class="form-control" formControlName="cId" id="clientId"
+                         aria-describedby="fullNameHelp"
+                         placeholder="Enter client id">
+                </div>
+                <div style="display: flex;align-items: baseline">
+                  <button type="button" class="form-group btn btn-primary align-elements"
+                          (click)="generateBrokerRegURL()">
+                    Generate URLs
+                  </button>
+                  <i class="fas fa-info" style="color: darkcyan" data-toggle="popover"
+                     title="Want to know how to register us with your broker. Click here"></i>
+                </div>
+                <div class="form-group" *ngIf="showUrls">
+                  <div class="text-muted">
+                    <label>Redirect URL &nbsp; :</label>
+                    <span style="margin-right: 0.5rem">&nbsp; {{redirectUrl}}</span>
+                    <i class="far fa-copy copy_clipboard" title="copy" [cdkCopyToClipboard]="redirectUrl"></i>
+                  </div>
+                  <div class="text-muted">
+                    <label>Postback URL &nbsp; :</label>
+                    <span style="margin-right: 0.5rem">&nbsp; {{postbackUrl}}</span>
+                    <i class="far fa-copy copy_clipboard" title="copy" [cdkCopyToClipboard]="postbackUrl"></i>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="apiKey" class="text-dark">Api Key</label>
+                  <input class="form-control" type="password" formControlName="aK" id="apiKey">
+                </div>
+                <div class="form-group">
+                  <label for="apiSecret" class="text-dark">Api Secret</label>
+                  <input class="form-control" type="password" formControlName="aS" id="apiSecret">
+                </div>
+                <button type="button" class="btn btn-primary align-elements" (click)="updateBroker()">Update Broker
+                </button>
+                <button type="reset" class="btn btn-light" (click)="skip()">Skip</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="text-muted">
-          <label>Postback URL &nbsp; :</label>
-          <span style="margin-right: 0.5rem">&nbsp; {{postbackUrl}}</span>
-          <button [cdkCopyToClipboard]="postbackUrl"><i class="far fa-copy" style="color: darkcyan"></i>
-          </button>
-        </div>
-        <!--        <span class="material-icons">content_copy</span></button>-->
       </div>
-      <div class="form-group">
-        <label for="apiKey" class="text-dark">Api Key</label>
-        <input class="form-control" type="password" formControlName="aK" id="apiKey">
-      </div>
-      <div class="form-group">
-        <label for="apiSecret" class="text-dark">Api Secret</label>
-        <input class="form-control" type="password" formControlName="aS" id="apiSecret">
-      </div>
-      <button type="button" class="btn btn-primary align-elements" (click)="updateBroker()">Update Broker</button>
-      <button type="reset" class="btn btn-light" (click)="skip()">Skip</button>
     </div>
   </div>
 </div>

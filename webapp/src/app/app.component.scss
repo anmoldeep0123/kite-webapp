@@ -6,4 +6,9 @@
 .nav-align {
   display: flex;
   justify-content: space-between;
+  align-items: baseline
+}
+
+.dashboard-align {
+  align-self: center;
 }

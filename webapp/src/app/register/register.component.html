@@ -1,86 +1,97 @@
-<div class="card">
-  <div class="card-body">
-    <h2>Register</h2>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="phnNum" class="text-dark">Phone number</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">91</span>
+<div class="view">
+  <div class="login-register">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+          <app-alert></app-alert>
+          <div class="card">
+            <div class="card-body">
+              <h2>Register</h2>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="phnNum" class="text-dark">Phone number</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">91</span>
+                    </div>
+                    <input type="text" class="form-control" autofocus formControlName="phnNum" id="phnNum"
+                           aria-describedby="basic-addon1" placeholder="Enter 10 digit number"
+                           [ngClass]="{ 'is-invalid': f.phnNum.dirty && f.phnNum.invalid }">
+                    <app-form-error-container class="invalid-feedback" [control]="registerForm.get('phnNum')">
+                      <app-form-error type="required">
+                        Phone number is required.
+                      </app-form-error>
+                      <app-form-error type="pattern">
+                        Phone number must have 10 digits
+                      </app-form-error>
+                    </app-form-error-container>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="text-dark">Email</label>
+                  <input type="text" id="email" formControlName="email" class="form-control"
+                         [ngClass]="{ 'is-invalid': f.email.dirty && f.email.invalid }"/>
+                  <app-form-error-container class="invalid-feedback" [control]="registerForm.get('email')">
+                    <app-form-error type="required">
+                      Email is required
+                    </app-form-error>
+                    <app-form-error type="pattern">
+                      Email id is invalid
+                    </app-form-error>
+                  </app-form-error-container>
+                </div>
+                <div class="form-group">
+                  <label for="password" class="text-dark">Password</label>
+                  <input type="password" id="password" formControlName="passwd" class="form-control"
+                         [ngClass]="{ 'is-invalid': f.passwd.dirty && f.passwd.invalid }"/>
+                  <app-form-error-container class="invalid-feedback" [control]="registerForm.get('passwd')">
+                    <app-form-error type="required">
+                      Password is required
+                    </app-form-error>
+                    <app-form-error type="minlength">
+                      Password must be at least 4 characters
+                    </app-form-error>
+                  </app-form-error-container>
+                </div>
+                <div class="form-group">
+                  <label for="cnfmPassword" class="text-dark">Confirm password</label>
+                  <input type="password" id="cnfmPassword" formControlName="cnfmPasswd" class="form-control"
+                         [ngClass]="{ 'is-invalid': registerForm && f.cnfmPasswd.dirty && registerForm.hasError('confirmPassword') }"/>
+                  <app-form-error-container class="invalid-feedback" [group]="registerForm">
+                    <app-form-error type="confirmPassword">
+                      Password and Confirm password didn't match
+                    </app-form-error>
+                    <app-form-error type="required">
+                      Confirm password is required
+                    </app-form-error>
+                  </app-form-error-container>
+                </div>
+                <div class="form-group">
+                  <label for="ref" class="text-dark">Referral code</label>
+                  <input type="text" id="ref" formControlName="ref" class="form-control"
+                         [ngClass]="{ 'is-invalid': f.ref.dirty && f.ref.invalid }"/>
+                  <app-form-error-container class="invalid-feedback" [control]="registerForm.get('ref')">
+                    <app-form-error type="required">
+                      Referral code is required
+                    </app-form-error>
+                  </app-form-error-container>
+                </div>
+                <div class="form-group" style="padding-top:1rem">
+                  <button class="btn btn-primary btn-block" [disabled]="registerForm.invalid">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Register
+                  </button>
+                  <label class="d-flex justify-content-center text-dark" style="padding-top:1rem">or</label>
+                  <div class="d-flex justify-content-center">
+                    <label for="ref" class="text-dark">Already on TradeBull?&nbsp;</label>
+                    <a routerLink="/login" class="text-primary">Sign in</a>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-          <input type="text" class="form-control" autofocus formControlName="phnNum" id="phnNum"
-                 aria-describedby="basic-addon1" placeholder="Enter 10 digit number"
-                 [ngClass]="{ 'is-invalid': f.phnNum.dirty && f.phnNum.invalid }">
-          <app-form-error-container class="invalid-feedback" [control]="registerForm.get('phnNum')">
-            <app-form-error type="required">
-              Phone number is required.
-            </app-form-error>
-            <app-form-error type="pattern">
-              Phone number must have 10 digits
-            </app-form-error>
-          </app-form-error-container>
         </div>
       </div>
-      <div class="form-group">
-        <label for="email" class="text-dark">Email</label>
-        <input type="text" id="email" formControlName="email" class="form-control"
-               [ngClass]="{ 'is-invalid': f.email.dirty && f.email.invalid }"/>
-        <app-form-error-container class="invalid-feedback" [control]="registerForm.get('email')">
-          <app-form-error type="required">
-            Email is required
-          </app-form-error>
-          <app-form-error type="pattern">
-            Email id is invalid
-          </app-form-error>
-        </app-form-error-container>
-      </div>
-      <div class="form-group">
-        <label for="password" class="text-dark">Password</label>
-        <input type="password" id="password" formControlName="passwd" class="form-control"
-               [ngClass]="{ 'is-invalid': f.passwd.dirty && f.passwd.invalid }"/>
-        <app-form-error-container class="invalid-feedback" [control]="registerForm.get('passwd')">
-          <app-form-error type="required">
-            Password is required
-          </app-form-error>
-          <app-form-error type="minlength">
-            Password must be at least 4 characters
-          </app-form-error>
-        </app-form-error-container>
-      </div>
-      <div class="form-group">
-        <label for="cnfmPassword" class="text-dark">Confirm password</label>
-        <input type="password" id="cnfmPassword" formControlName="cnfmPasswd" class="form-control"
-               [ngClass]="{ 'is-invalid': registerForm && f.cnfmPasswd.dirty && registerForm.hasError('confirmPassword') }"/>
-        <app-form-error-container class="invalid-feedback" [group]="registerForm">
-          <app-form-error type="confirmPassword">
-            Password and Confirm password didn't match
-          </app-form-error>
-          <app-form-error type="required">
-            Confirm password is required
-          </app-form-error>
-        </app-form-error-container>
-      </div>
-      <div class="form-group">
-        <label for="ref" class="text-dark">Referral code</label>
-        <input type="text" id="ref" formControlName="ref" class="form-control"
-               [ngClass]="{ 'is-invalid': f.ref.dirty && f.ref.invalid }"/>
-        <app-form-error-container class="invalid-feedback" [control]="registerForm.get('ref')">
-          <app-form-error type="required">
-            Referral code is required
-          </app-form-error>
-        </app-form-error-container>
-      </div>
-      <div class="form-group" style="padding-top:1rem">
-        <button class="btn btn-primary btn-block" [disabled]="registerForm.invalid">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-          Register
-        </button>
-        <label class="d-flex justify-content-center text-dark" style="padding-top:1rem">or</label>
-        <div class="d-flex justify-content-center">
-          <label for="ref" class="text-dark">Already on TradeBull?&nbsp;</label>
-          <a routerLink="/login" class="text-primary">Sign in</a>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
 </div>

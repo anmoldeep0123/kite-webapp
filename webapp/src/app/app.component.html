@@ -1,28 +1,16 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark nav-align" *ngIf="currentUser">
   <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/dashboard">Dashboard</a>
-    <a class="nav-item nav-link" routerLink="/about">About</a>
-    <!--    <a class="nav-item nav-link" routerLink="/verifyEmail">Verify Email</a>-->
-<!--    <a class="nav-item nav-link" (click)="logout()">Logout</a>-->
+    <a class="navbar-brand" href="#">
+      <img src="assets/images/tradeBull_logo.jpeg" alt="Logo" style="height: 3rem;width: 6rem">
+    </a>
+    <a class="nav-item nav-link dashboard-align" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a class="nav-item nav-link dashboard-align" routerLink="/about" routerLinkActive="active">About</a>
   </div>
   <div>
     <app-user-config></app-user-config>
   </div>
 </nav>
-
-<!-- main app container -->
-<div class="view">
-  <!--     style="background: url('assets/images/StockMarketStock.jpg');-->
-  <!--      background-repeat: no-repeat; background-size: cover; background-position: center center;height: 100vh;">-->
-  <div class="" style="height: 92vh;background-color:#0c8996">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 offset-sm-3">
-          <app-alert></app-alert>
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-    </div>
-  </div>
+<div>
+  <router-outlet></router-outlet>
 </div>

@@ -1,43 +1,54 @@
-<div class="card">
-  <div class="card-body">
-    <div [formGroup]="profileForm" class="tab-pane active" id="profile">
-      <h3 class="text-dark">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             class="feather feather-user mr-2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-        Profile Information
-      </h3>
-      <hr>
-      <div class="form-group">
-        <label for="fullName" class="text-dark">First Name</label>
-        <input type="text" class="form-control" formControlName="fn"
-               id="fullName" aria-describedby="fullNameHelp"
-               placeholder="Enter your full name">
+<div class="view">
+  <div class="primary-class">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+          <app-alert></app-alert>
+          <div class="card">
+            <div class="card-body">
+              <div [formGroup]="profileForm" class="tab-pane active" id="profile">
+                <h3 class="text-dark">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                       class="feather feather-user mr-2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  Profile Information
+                </h3>
+                <hr>
+                <div class="form-group">
+                  <label for="fullName" class="text-dark">First Name</label>
+                  <input type="text" class="form-control" formControlName="fn"
+                         id="fullName" aria-describedby="fullNameHelp"
+                         placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                  <label for="nickName" class="text-dark">Last name</label>
+                  <input type="text" formControlName="ln" class="form-control" id="nickName">
+                </div>
+                <div class="form-group">
+                  <label for="gender" class="text-dark">Gender</label>
+                  <select class="custom-select" formControlName="gdr" id="gender">
+                    <option value="M" selected>Male</option>
+                    <option value="F">Female</option>
+                    <option value="O">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="dob" class="text-dark">Date of birth</label>
+                  <input type="date" formControlName="dob" class="form-control" id="dob">
+                  {{profileForm.get('dob').errors}}
+                </div>
+                <button type="button" class="btn btn-primary align-elements" [disabled]="profileForm.invalid"
+                        (click)="updateProfile()">Update Profile
+                </button>
+                <button type="reset" class="btn btn-light" (click)="skip()">Skip</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="nickName" class="text-dark">Last name</label>
-        <input type="text" formControlName="ln" class="form-control" id="nickName">
-      </div>
-      <div class="form-group">
-        <label for="gender" class="text-dark">Gender</label>
-        <select class="custom-select" formControlName="gdr" id="gender">
-          <option value="M" selected>Male</option>
-          <option value="F">Female</option>
-          <option value="O">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="dob" class="text-dark">Date of birth</label>
-        <input type="date" formControlName="dob" class="form-control" id="dob">
-        {{profileForm.get('dob').errors}}
-      </div>
-      <button type="button" class="btn btn-primary align-elements" [disabled]="profileForm.invalid"
-              (click)="updateProfile()">Update Profile
-      </button>
-      <button type="reset" class="btn btn-light" (click)="skip()">Skip</button>
     </div>
   </div>
 </div>

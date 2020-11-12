@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from './service/authentication.service';
 
 @Component({
@@ -9,15 +9,10 @@ import {AuthenticationService} from './service/authentication.service';
 })
 export class AppComponent {
   currentUser: string;
-  hideUserMenu = true;
+  applyStyle: any;
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) {
+  constructor(private router: Router, private authenticationService: AuthenticationService,
+              private route: ActivatedRoute) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-  }
-
-  logout() {
-    this.hideUserMenu = true;
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
   }
 }

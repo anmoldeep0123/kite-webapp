@@ -1,0 +1,32 @@
+.primary-class {
+  height: 100vh;
+  background: whitesmoke;
+}
+
+.login-register {
+  height: 100%;
+  background: -webkit-linear-gradient(bottom,#0250c5,#d43f8d);
+}
+
+.card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #d5e3d8;
+  background-clip: border-box;
+  border: 0 solid rgba(0, 0, 0, .125);
+  border-radius: .25rem;
+  margin-top: 2rem
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1rem;
+}
